@@ -8,7 +8,7 @@ import ActivityFeed from '../dashboard/ActivityFeed';
 
 export default function HealthcareDashboard() {
   return (
-    <main className="dashboard-main grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 bg-gray-50 min-h-screen">
+    <main className="dashboard-main grid grid-cols-1 lg:grid-cols-2 gap-6 p-0 bg-gray-50 min-h-screen w-full max-w-none">
       <section className="col-span-1">
         <AnatomySection />
         <HealthStatusCards />

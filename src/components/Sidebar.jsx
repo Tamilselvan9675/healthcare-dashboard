@@ -16,7 +16,7 @@ const navItems = [
 
 export default function Sidebar() {
   return (
-    <aside className="sidebar w-60 bg-gray-100 h-screen p-4 shadow-lg">
+    <aside className="sidebar w-80 bg-gray-100 p-4 shadow-lg">
       <h2 className="text-gray-700 font-bold mb-6">General</h2>
       <nav className="flex flex-col gap-4">
         {navItems.map((item, index) => (
