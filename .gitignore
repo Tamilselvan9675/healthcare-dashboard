@@ -1,3 +1,6 @@
+# Exclude Resume folder
+Resume/
+
 # Logs
 logs
 *.log
