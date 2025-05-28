@@ -1,29 +1,43 @@
 import React from 'react';
 
-const appointments = [
-  { time: '09:00 AM', patient: 'Emily Clark', purpose: 'Dental Checkup' },
-  { time: '10:30 AM', patient: 'Michael Brown', purpose: 'Cardiology Review' },
-  { time: '01:00 PM', patient: 'Sarah Johnson', purpose: 'Orthopedic Consultation' },
-];
-
 export default function UpcomingSchedule() {
+  const schedule = [
+    {
+      patientName: 'Emily Clark',
+      visitTime: '09:00 AM',
+      visitReason: 'Dental Checkup',
+    },
+    {
+      patientName: 'Michael Brown',
+      visitTime: '10:30 AM',
+      visitReason: 'Cardiology Review',
+    },
+    {
+      patientName: 'Sarah Johnson',
+      visitTime: '01:00 PM',
+      visitReason: 'Orthopedic Consultation',
+    },
+  ];
+
   return (
-    <div className="upcoming-schedule bg-white p-6 rounded-2xl shadow-md mt-6 max-w-md mx-auto">
-      <h3 className="text-xl font-semibold mb-6 text-gray-800">Upcoming Schedule</h3>
+    <section className="bg-white p-6 rounded-2xl shadow-md mt-6 max-w-md mx-auto">
+      <header className="mb-6">
+        <h2 className="text-xl font-semibold text-gray-800">Upcoming Schedule</h2>
+      </header>
       <ul className="space-y-5">
-        {appointments.map(({ time, patient, purpose }, index) => (
+        {schedule.map((item, index) => (
           <li
             key={index}
-            className="flex justify-between items-center border-b border-gray-200 pb-4 last:border-0"
+            className="flex justify-between items-start border-b border-gray-200 pb-4 last:border-0"
           >
             <div>
-              <p className="font-semibold text-gray-900">{patient}</p>
-              <p className="text-sm text-gray-500">{purpose}</p>
+              <h4 className="text-gray-900 font-semibold">{item.patientName}</h4>
+              <p className="text-sm text-gray-500">{item.visitReason}</p>
             </div>
-            <span className="text-sm text-gray-600 font-medium">{time}</span>
+            <time className="text-sm text-gray-600 font-medium">{item.visitTime}</time>
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 }

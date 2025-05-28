@@ -1,6 +1,6 @@
 import React from 'react';
 
-const activities = [
+const weeklyActivity = [
   { day: 'Mon', count: 4 },
   { day: 'Tue', count: 6 },
   { day: 'Wed', count: 3 },
@@ -12,26 +12,24 @@ const activities = [
 
 export default function ActivityFeed() {
   return (
-    <div className="bg-white rounded-2xl p-6 shadow-md w-full max-w-md mt-4">
-      <div className="flex justify-between items-center mb-5">
-        <h3 className="text-xl font-semibold text-gray-800">Activity</h3>
-        <p className="text-sm text-gray-500">3 appointments this week</p>
-      </div>
-      <div className="flex justify-between items-end h-28 space-x-3">
-        {activities.map(({ day, count }) => (
-          <div
-            key={day}
-            className="flex flex-col items-center cursor-pointer group"
-            title={`${count} activities on ${day}`}
-          >
+    <section className="bg-white p-6 rounded-2xl shadow-md mt-6 max-w-md mx-auto">
+      <header className="flex justify-between items-center mb-8">
+        <h2 className="text-lg font-bold text-gray-800">Weekly Activity</h2>
+        <span className="text-sm text-gray-500">3 appointments this week</span>
+      </header>
+
+      <div className="flex items-end justify-between h-25 space-x-3">
+        {weeklyActivity.map(({ day, count }) => (
+          <div key={day} className="flex flex-col items-center group">
             <div
-              className="w-4 bg-blue-500 rounded-t-lg transition-all duration-300 group-hover:bg-blue-600"
+              className="w-3.5 bg-blue-600 rounded-t-md transition-all duration-300 group-hover:bg-blue-700"
               style={{ height: `${count * 12}px` }}
-            />
-            <span className="mt-2 text-xs font-medium text-gray-600">{day}</span>
+              title={`${count} activities on ${day}`}
+            ></div>
+            <span className="mt-2 text-xs text-gray-600 font-medium">{day}</span>
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }

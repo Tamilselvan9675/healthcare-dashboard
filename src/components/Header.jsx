@@ -1,18 +1,17 @@
 import React from 'react';
 import { Bell, Plus } from 'lucide-react';
-import avatar from '../assets/avatar.jpg'
+import avatar from '../assets/avatar.jpg';
 
 export default function Header() {
   return (
-    <header className="header flex items-center justify-between p-4 shadow-md bg-gradient-to-r from-blue-700 via-blue-600 to-blue-700">
+    <header className="flex items-center justify-between p-4 shadow-md bg-gradient-to-r from-blue-700 via-blue-600 to-blue-700">
       {/* Logo */}
-      <div className="logo text-white text-2xl font-extrabold select-none">
+      <div className="text-white text-2xl font-extrabold select-none">
         Healthcare Dashboard
       </div>
 
       {/* Search bar */}
-      <div className="search-bar flex items-center bg-blue-100/30 rounded-full px-3 py-1.5 w-64 text-white">
-        <span className="mr-2 text-lg"></span>
+      <div className="flex items-center bg-blue-100/30 rounded-full px-3 py-1.5 w-64 text-white">
         <input
           type="text"
           placeholder="Search..."
@@ -20,11 +19,11 @@ export default function Header() {
         />
       </div>
 
-      {/* Actions */}
-      <div className="header-actions flex items-center gap-6 text-white">
+      {/* Action buttons and profile */}
+      <div className="flex items-center gap-6 text-white">
         <Bell className="cursor-pointer hover:text-blue-300 transition" size={20} />
 
-        <div className="user-profile flex items-center gap-3 cursor-pointer">
+        <div className="flex items-center gap-3 cursor-pointer">
           <img
             src={avatar}
             alt="User Avatar"
@@ -34,7 +33,7 @@ export default function Header() {
         </div>
 
         <button
-          className="add-btn bg-white text-blue-700 p-2 rounded-full shadow hover:bg-blue-100 transition"
+          className="bg-white text-blue-700 p-2 rounded-full shadow hover:bg-blue-100 transition"
           aria-label="Add"
         >
           <Plus size={18} />

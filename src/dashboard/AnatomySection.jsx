@@ -1,43 +1,43 @@
 import React from 'react';
-import anatomyImage from '../assets/anatomy.jpg'
+import anatomyImage from '../assets/anatomy.jpg';
 
 export default function AnatomySection() {
-  const indicators = [
-    { label: 'Healthy Heart', color: '#22c55e' },
-    { label: 'Lungs', color: '#ef4444' },
-    { label: 'Teeth', color: '#3b82f6' },
-    { label: 'Bone', color: '#f97316' },
+  const bodyParts = [
+    { name: 'Healthy Heart', indicatorColor: '#22c55e' },   // Green
+    { name: 'Lungs', indicatorColor: '#ef4444' },          // Red
+    { name: 'Teeth', indicatorColor: '#3b82f6' },          // Blue
+    { name: 'Bone', indicatorColor: '#f97316' },           // Orange
   ];
 
   return (
-    <div className="bg-white p-6 rounded-2xl shadow-md max-w-3xl mx-auto flex flex-col md:flex-row items-center gap-8">
+    <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-2xl flex flex-col md:flex-row items-center gap-8 mt-6">
       
-      {/* Anatomy Image */}
-      <div className="flex-shrink-0 w-full md:w-1/2">
+      {/* Left: Anatomy Image */}
+      <div className="w-full md:w-1/2">
         <img
           src={anatomyImage}
-          alt="Human Anatomy"
-          className="w-full h-auto rounded-xl shadow-sm object-contain"
+          alt="Anatomy Diagram"
+          className="rounded-xl object-cover w-full h-auto shadow-sm"
         />
       </div>
-      
-      {/* Indicators */}
-      <ul className="w-full md:w-1/2 grid grid-cols-1 gap-5">
-        {indicators.map(({ label, color }) => (
-          <li
-            key={label}
-            className="flex items-center gap-4 cursor-pointer hover:bg-gray-100 rounded-lg p-3 transition"
-            title={label}
-          >
-            <span
-              className="w-6 h-6 rounded-full flex-shrink-0"
-              style={{ backgroundColor: color }}
-              aria-hidden="true"
-            ></span>
-            <span className="text-gray-800 font-semibold text-lg">{label}</span>
-          </li>
-        ))}
-      </ul>
+
+      {/* Right: Body Part Indicators */}
+      <div className="w-full md:w-1/2">
+        <ul className="grid grid-cols-1 gap-5">
+          {bodyParts.map((part, idx) => (
+            <li
+              key={idx}
+              className="flex items-center gap-4 hover:bg-gray-100 rounded-lg p-3 transition-colors duration-200"
+            >
+              <div
+                className="w-6 h-6 rounded-full"
+                style={{ backgroundColor: part.indicatorColor }}
+              />
+              <span className="text-lg font-semibold text-gray-800">{part.name}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

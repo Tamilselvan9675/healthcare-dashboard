@@ -6,12 +6,12 @@ import './App.css';
 
 export default function App() {
   return (
-    <div className="app-container flex">
-      <Sidebar />
-      <div className="main-content flex flex-col w-full">
-        <Header />
-        <HealthcareDashboard />
-      </div>
-    </div>
+<div className="app-container flex min-h-screen">
+  <Sidebar />
+  <main className="main-content flex flex-col w-full">
+    <Header />
+    <HealthcareDashboard />
+  </main>
+</div>
   );
 }

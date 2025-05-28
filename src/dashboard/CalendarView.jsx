@@ -1,55 +1,61 @@
 import React, { useState, useEffect } from 'react';
 
 export default function CalendarView() {
-  const [days, setDays] = useState([]);
+  const [calendarDays, setCalendarDays] = useState([]);
 
   useEffect(() => {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = today.getMonth();
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth();
 
-    // Get first day of the month (0 = Sunday, 6 = Saturday)
-    const firstDayOfMonth = new Date(year, month, 1).getDay();
+    const firstWeekDay = new Date(year, month, 1).getDay(); // Sunday = 0
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-    // Get total days in the month
-    const totalDays = new Date(year, month + 1, 0).getDate();
+    const gridDays = [];
 
-    // Create array of days including empty slots before month start
-    const daysArray = [];
-
-    for (let i = 0; i < firstDayOfMonth; i++) {
-      daysArray.push(null);
-    }
-    for (let d = 1; d <= totalDays; d++) {
-      daysArray.push(d);
+    for (let i = 0; i < firstWeekDay; i++) {
+      gridDays.push(null); // Fill empty days at start
     }
 
-    setDays(daysArray);
+    for (let d = 1; d <= daysInMonth; d++) {
+      gridDays.push(d);
+    }
+
+    setCalendarDays(gridDays);
   }, []);
 
-  const todayDate = new Date().getDate();
-
-  const dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const today = new Date().getDate();
 
   return (
-    <div className="calendar-view bg-white p-6 rounded-2xl shadow-md max-w-sm mx-auto mt-4">
-      <h3 className="text-xl font-semibold mb-4 text-gray-800">Calendar</h3>
-      <div className="grid grid-cols-7 gap-2 text-center text-gray-500 font-medium mb-2">
-        {dayLabels.map((day) => (
-          <div key={day}>{day}</div>
+    <section className="bg-white p-6 rounded-2xl shadow-md max-w-sm mx-auto mt-4">
+      <header className="mb-4">
+        <h2 className="text-xl font-semibold text-gray-800">Calendar</h2>
+      </header>
+
+      {/* Weekday Headers */}
+      <div className="grid grid-cols-7 gap-2 text-center text-gray-500 text-sm font-medium mb-2">
+        {weekDays.map((label) => (
+          <div key={label}>{label}</div>
         ))}
       </div>
-      <div className="grid grid-cols-7 gap-2 text-center">
-        {days.map((day, idx) => (
+
+      {/* Calendar Days */}
+      <div className="grid grid-cols-7 gap-2 text-center text-sm">
+        {calendarDays.map((date, idx) => (
           <div
             key={idx}
-            className={`h-10 flex items-center justify-center rounded-md cursor-pointer 
-              ${day === todayDate ? 'bg-blue-500 text-white font-semibold' : 'text-gray-700 hover:bg-blue-100'}`}
+            className={`h-10 w-10 flex items-center justify-center rounded-md transition 
+              ${date === today 
+                ? 'bg-blue-500 text-white font-bold' 
+                : date 
+                  ? 'text-gray-700 hover:bg-blue-100 cursor-pointer' 
+                  : ''}`}
           >
-            {day || ''}
+            {date || ''}
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
